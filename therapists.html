@@ -1,0 +1,175 @@
+<title>arc — for therapists</title>
+<style>
+  :root{
+    /* aluminum ground + arc tokens (from the app design system) */
+    --alu: linear-gradient(147.96deg,#f4f5fa,#c0c6cd,#f3f5fa,#a1a5b0);
+    --card: rgba(255,255,255,.44);
+    --rim: rgba(255,255,255,.9);
+    --drop: rgba(120,126,133,.42);
+    --ink: #20262d;
+    --ink-2: #5c6670;
+    --ink-3: #8a929b;
+    --gold: #F0B03B;
+    --gold-deep: #96680A;
+    --hair: rgba(92,102,112,.22);
+    --stepnum: #b9832a;
+    --font: -apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text','Inter',system-ui,sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --alu: linear-gradient(147.96deg,#2b2f36,#171a1f,#2a2e34,#0f1114);
+      --card: rgba(58,63,70,.42);
+      --rim: rgba(196,203,212,.14);
+      --drop: rgba(0,0,0,.5);
+      --ink: #eef1f4;
+      --ink-2: #b3bcc6;
+      --ink-3: #7f8892;
+      --hair: rgba(196,203,212,.16);
+      --stepnum: #e0b155;
+    }
+  }
+  :root[data-theme="light"]{
+    --alu: linear-gradient(147.96deg,#f4f5fa,#c0c6cd,#f3f5fa,#a1a5b0);
+    --card: rgba(255,255,255,.44); --rim: rgba(255,255,255,.9); --drop: rgba(120,126,133,.42);
+    --ink:#20262d; --ink-2:#5c6670; --ink-3:#8a929b; --hair:rgba(92,102,112,.22); --stepnum:#b9832a;
+  }
+  :root[data-theme="dark"]{
+    --alu: linear-gradient(147.96deg,#2b2f36,#171a1f,#2a2e34,#0f1114);
+    --card: rgba(58,63,70,.42); --rim: rgba(196,203,212,.14); --drop: rgba(0,0,0,.5);
+    --ink:#eef1f4; --ink-2:#b3bcc6; --ink-3:#7f8892; --hair:rgba(196,203,212,.16); --stepnum:#e0b155;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    font-family:var(--font); color:var(--ink);
+    background:var(--alu); background-attachment:fixed;
+    min-height:100vh; line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    display:flex; justify-content:center;
+    padding:clamp(20px,5vw,64px) 20px;
+  }
+  .wrap{width:100%; max-width:600px; display:flex; flex-direction:column; gap:28px;}
+
+  /* wordmark — type only, not the torus artwork */
+  .brand{display:flex; align-items:baseline; gap:.14em; font-weight:700; letter-spacing:-.02em; font-size:26px;}
+  .brand .a{color:var(--ink)}
+  .brand .pt{
+    font-size:.62em; font-weight:700; letter-spacing:.02em;
+    background:linear-gradient(179deg,#F0B03B,#FFEBB0,#F0B03B,#96680A,#F0B03B);
+    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;
+  }
+
+  .hero{display:flex; flex-direction:column; gap:14px; padding-top:8px;}
+  .eyebrow{
+    font-size:12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--ink-3);
+  }
+  h1{
+    font-size:clamp(30px,6.4vw,44px); line-height:1.04; letter-spacing:-.02em;
+    font-weight:640; text-wrap:balance; color:var(--ink);
+  }
+  .sub{font-size:clamp(17px,2.6vw,19px); color:var(--ink-2); max-width:32ch; text-wrap:balance;}
+  .client{color:var(--ink); font-weight:600;}
+
+  .card{
+    background:var(--card); border-radius:18px;
+    box-shadow:0 1px 0 var(--rim) inset, 0 10px 26px -14px var(--drop);
+    padding:clamp(20px,4vw,28px);
+    display:flex; flex-direction:column; gap:22px;
+  }
+  .card-h{font-size:13px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);}
+
+  .steps{display:flex; flex-direction:column; gap:20px;}
+  .step{display:grid; grid-template-columns:auto 1fr; gap:16px; align-items:start;}
+  .num{
+    font-variant-numeric:tabular-nums; font-weight:700; font-size:15px; color:var(--stepnum);
+    width:30px; height:30px; border-radius:50%; display:grid; place-items:center;
+    border:1.5px solid var(--gold); flex:none;
+  }
+  .step h3{font-size:17px; font-weight:600; color:var(--ink); margin-bottom:3px; letter-spacing:-.01em;}
+  .step p{font-size:15px; color:var(--ink-2); max-width:46ch;}
+
+  .cta-row{display:flex; flex-direction:column; gap:10px; align-items:flex-start;}
+  .cta{
+    display:inline-flex; align-items:center; gap:10px;
+    background:var(--ink); color:var(--alu); background-clip:padding-box;
+    color:#f4f5fa; font-size:16px; font-weight:600; letter-spacing:-.01em;
+    padding:14px 24px; border-radius:999px; text-decoration:none; border:none; cursor:pointer;
+    box-shadow:0 8px 22px -12px rgba(0,0,0,.5);
+    transition:transform .16s ease, box-shadow .16s ease;
+  }
+  .cta:hover{transform:translateY(-1px); box-shadow:0 12px 26px -12px rgba(0,0,0,.55);}
+  .cta:focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+  .cta svg{width:17px;height:17px;fill:currentColor}
+  .cta-soon{cursor:default; opacity:.9;}
+  .cta-soon:hover{transform:none; box-shadow:0 8px 22px -12px rgba(0,0,0,.5);}
+  .cta-note{font-size:13px; color:var(--ink-3);}
+
+  .foot{border-top:1px solid var(--hair); padding-top:20px; display:flex; flex-direction:column; gap:6px;}
+  .foot p{font-size:13px; color:var(--ink-3); max-width:52ch;}
+
+  .rise{opacity:0; transform:translateY(10px); animation:rise .6s cubic-bezier(.2,.7,.3,1) forwards;}
+  .rise:nth-child(2){animation-delay:.06s}
+  .rise:nth-child(3){animation-delay:.12s}
+  .rise:nth-child(4){animation-delay:.18s}
+  @keyframes rise{to{opacity:1; transform:none}}
+  @media (prefers-reduced-motion: reduce){.rise{animation:none; opacity:1; transform:none}}
+</style>
+
+<div class="wrap">
+  <div class="brand rise"><span class="a">arc</span><span class="pt">PT</span></div>
+
+  <header class="hero rise">
+    <p class="eyebrow">An invitation</p>
+    <h1><span class="client" id="clientName">Your client</span> is doing their therapy on arc.</h1>
+    <p class="sub">They'd like you to build their recovery program — free.</p>
+  </header>
+
+  <section class="card rise">
+    <p class="card-h">How it works</p>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <div>
+          <h3>Download arc</h3>
+          <p>Get the app on your iPhone or iPad. Start building with no account.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <div>
+          <h3>Build the program</h3>
+          <p>Add movements from a built-in library or your own — set reps and holds, attach demo videos, and write guidance for each one.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <div>
+          <h3>Share it</h3>
+          <p>Send it straight to your client's phone. arc walks them through each day and tracks what they complete.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="cta-row rise">
+    <span class="cta cta-soon">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.5 1.6c.1 1-.3 2-.9 2.8-.7.8-1.7 1.4-2.7 1.3-.1-1 .3-2 .9-2.7.7-.8 1.8-1.4 2.7-1.4zM19.8 17c-.5 1.2-.8 1.7-1.4 2.7-.9 1.4-2.2 3.2-3.8 3.2-1.4 0-1.8-.9-3.7-.9-1.9 0-2.3.9-3.7.9-1.6 0-2.8-1.6-3.7-3C1 15.7.6 10.4 2.9 7.6 3.9 6.3 5.4 5.5 6.9 5.5c1.6 0 2.6.9 3.9.9 1.3 0 2-.9 3.9-.9 1.3 0 2.7.7 3.7 2-3.2 1.8-2.7 6.4.5 7.5z"/></svg>
+      Coming soon to the App Store
+    </span>
+    <p class="cta-note">Free to use — no subscription to build and share a program.</p>
+  </div>
+
+  <footer class="foot rise">
+    <p>arc is a physical-therapy app for building recovery programs and guiding clients through them, day by day.</p>
+    <p>Your client only ever sees the program you send.</p>
+  </footer>
+</div>
+<script>
+  var c = new URLSearchParams(location.search).get('c');
+  if (c) {
+    var el = document.getElementById('clientName');
+    if (el) el.textContent = c.replace(/[<>]/g, '').trim().slice(0, 40);
+  }
+</script>
